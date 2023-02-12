@@ -1,4 +1,6 @@
 import { sql } from "../../../../DB/connection.js";
+import { redisClient } from "./../../../../DB/connection.js";
+
 
 // add offer or notification
 export const addNotification = (req, res, next) => {
@@ -30,6 +32,11 @@ export const getAllNotification = (req, res, next) => {
       if (!notifications.length) {
         return next(new Error("notifications Not found", { cause: 404 }));
       }
+      // saving data in redis DB for 3 minutes
+      redisClient.set(`notifications${req.User.id}`, JSON.stringify({ notifications }), {
+        EX: 180,
+        NX: true,
+      });
       return res.status(200).json({ message: "Done", notifications });
     }
   );
