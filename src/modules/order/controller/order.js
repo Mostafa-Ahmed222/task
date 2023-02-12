@@ -110,7 +110,7 @@ export const getOrders = (req, res, next) => {
       }
       orders = orders.slice(skip, limit);
       // saving data in redis DB for 3 minutes
-      redisClient.set("orders", JSON.stringify({ orders }), {
+      redisClient.set(`orders${req.User.id}`, JSON.stringify({ orders }), {
         EX: 180,
         NX: true,
       });

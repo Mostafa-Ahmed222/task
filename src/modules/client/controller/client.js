@@ -62,7 +62,7 @@ export const getAllClients = (req, res, next) => {
       }
       clients = clients.slice(skip, limit);
       // saving data in redis DB for 3 minutes
-      redisClient.set("clients", JSON.stringify({ clients }), {
+      redisClient.set(`clients${req.User.id}`, JSON.stringify({ clients }), {
         EX: 180,
         NX: true,
       });

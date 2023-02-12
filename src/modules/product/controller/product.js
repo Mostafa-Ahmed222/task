@@ -62,7 +62,7 @@ export const getAllProducts = (req, res, next) => {
       }
       products = products.slice(skip, limit);
       // saving data in redis DB for 3 minutes
-      redisClient.set("products", JSON.stringify({ products }), {
+      redisClient.set(`products${req.User.id}`, JSON.stringify({ products }), {
         EX: 180,
         NX: true,
       });
