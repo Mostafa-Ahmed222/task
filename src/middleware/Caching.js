@@ -2,7 +2,7 @@ import { redisClient } from '../../DB/connection.js';
 
 export const caching = (key)=>{
   return async(req, res, next) => {
-    const cacheResult = await redisClient.get(`${key}`)
+    const cacheResult = await redisClient.get(`${key}${req.User.id}`)
     if (!cacheResult) {
       return next()
     }
