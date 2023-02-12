@@ -26,7 +26,8 @@ to run app
 8. bcryptjs
 9. &#x20;JWT
 10. &#x20;nodemailer
-11. dotenv
+11. multer
 12. pdfkit
 13. xlsx
 14. cors
+15. dotenv
