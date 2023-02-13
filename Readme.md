@@ -1,6 +1,6 @@
 # DATABASE
 
--first in phpmyadmin create a new database which name is task in
+-first in phpmyadmin create a new database which name is task
 
 - then import database (_TASKDATABASE_.sql) to task database in phpmyadmin
 
